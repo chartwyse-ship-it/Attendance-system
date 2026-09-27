@@ -1,1 +1,90 @@
 
+import streamlit as st
+from datetime import date
+
+st.set_page_config(
+    page_title="Attendance System",
+    page_icon="📋",
+    layout="centered"
+)
+
+st.title("📋 Attendance System")
+st.write("Teacher Attendance Dashboard")
+
+st.divider()
+
+# Class, Section and Subject
+col1, col2 = st.columns(2)
+
+with col1:
+    selected_class = st.selectbox(
+        "Class",
+        ["BCA 1", "BCA 2", "BCA 3"]
+    )
+
+with col2:
+    selected_section = st.selectbox(
+        "Section",
+        ["A", "B", "C"]
+    )
+
+subject = st.selectbox(
+    "Subject",
+    [
+        "DBMS",
+        "Operating System",
+        "Computer Networks",
+        "Python"
+    ]
+)
+
+attendance_date = st.date_input(
+    "Date",
+    value=date.today()
+)
+
+st.divider()
+
+st.subheader("👨‍🎓 Mark Attendance")
+
+# Demo student list
+students = [
+    {"roll_no": "101", "name": "Rahul Sharma"},
+    {"roll_no": "102", "name": "Aman Kumar"},
+    {"roll_no": "103", "name": "Ravi Singh"},
+    {"roll_no": "104", "name": "Mohit Yadav"},
+    {"roll_no": "105", "name": "Ankit Verma"},
+]
+
+attendance = {}
+
+for student in students:
+
+    attendance[student["roll_no"]] = st.checkbox(
+        f'{student["roll_no"]} - {student["name"]}',
+        value=True
+    )
+
+st.divider()
+
+if st.button(
+    "✅ Submit Attendance",
+    use_container_width=True
+):
+
+    st.success("Attendance submitted successfully!")
+
+    st.write("### Attendance Summary")
+
+    for student in students:
+
+        if attendance[student["roll_no"]]:
+            status = "Present"
+        else:
+            status = "Absent"
+
+        st.write(
+            f'{student["roll_no"]} - '
+            f'{student["name"]} → **{status}**'
+        )
+
