@@ -72,7 +72,7 @@ try:
         students = result["rows"]
         if isinstance(students,str):
            students = json.loads(students)
-        else:
+    else:
            st.error(f"n8n error {response.status_code}:{response.text}")
 except Exception as e:
     st.error(f"Unable to load students: {e}")
