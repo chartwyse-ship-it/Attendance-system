@@ -68,7 +68,7 @@ try:
 
     if response.ok:
         result = response.json()
-        students = result["students"]
+        students = result["rows"]
         st.write(type(students),students)
 except Exception as e:
     st.error(f"Unable to load students: {e}")
