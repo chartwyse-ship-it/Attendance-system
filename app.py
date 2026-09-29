@@ -97,7 +97,7 @@ st.subheader("🧪 n8n Connection Test")
 
 if st.button("Test n8n Connection"):
 
-    webhook_url = "PASTE_YOUR_N8N_TEST_URL_HERE"
+    webhook_url = "https://somvanshi.app.n8n.cloud/webhook-test/get-students"
 
     payload = {
         "class": selected_class,
