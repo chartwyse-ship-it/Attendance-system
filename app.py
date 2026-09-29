@@ -47,14 +47,30 @@ st.divider()
 
 st.subheader("👨‍🎓 Mark Attendance")
 
-# Demo student list
-students = [
-    {"roll_no": "101", "name": "Rahul Sharma"},
-    {"roll_no": "102", "name": "Aman Kumar"},
-    {"roll_no": "103", "name": "Ravi Singh"},
-    {"roll_no": "104", "name": "Mohit Yadav"},
-    {"roll_no": "105", "name": "Ankit Verma"},
-]
+
+# Get students from n8n
+
+webhook_url = "https://somvanshi.app.n8n.cloud/webhook-test/get-students"
+
+students = []
+
+try:
+    payload = {
+        "class": selected_class,
+        "section": selected_section
+    }
+
+    response = requests.post(
+        webhook_url,
+        json=payload,
+        timeout=30
+    )
+
+    if response.ok:
+        students = response.json()
+
+except Exception as e:
+    st.error(f"Unable to load students: {e}")
 
 attendance = {}
 
