@@ -1,4 +1,4 @@
-
+import requests
 import streamlit as st
 from datetime import date
 
@@ -87,4 +87,47 @@ if st.button(
             f'{student["roll_no"]} - '
             f'{student["name"]} → **{status}**'
         )
+# --------------------------------
+# n8n Connection Test
+# --------------------------------
+
+st.divider()
+
+st.subheader("🧪 n8n Connection Test")
+
+if st.button("Test n8n Connection"):
+
+    webhook_url = "PASTE_YOUR_N8N_TEST_URL_HERE"
+
+    payload = {
+        "class": selected_class,
+        "section": selected_section
+    }
+
+    try:
+
+        response = requests.post(
+            webhook_url,
+            json=payload,
+            timeout=30
+        )
+
+        st.write("Status Code:", response.status_code)
+
+        if response.ok:
+            st.success("✅ n8n connection successful!")
+
+            try:
+                st.json(response.json())
+            except:
+                st.write(response.text)
+
+        else:
+            st.error("❌ n8n returned an error")
+            st.write(response.text)
+
+    except Exception as e:
+        st.error("❌ Connection failed")
+        st.write(str(e))
+    
 
