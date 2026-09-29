@@ -1,4 +1,5 @@
 import requests
+import json
 import streamlit as st
 from datetime import date
 
@@ -69,7 +70,10 @@ try:
     if response.ok:
         result = response.json()
         students = result["rows"]
-        st.write(type(students),students)
+        if isinstance(students,str):
+           students = json.loads(students)
+        else:
+           st.error(f"n8n error {response.status_code}:{response.text}")
 except Exception as e:
     st.error(f"Unable to load students: {e}")
 
