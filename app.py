@@ -77,7 +77,7 @@ attendance = {}
 for student in students:
 
     attendance[student["roll_no"]] = st.checkbox(
-        f'{student["roll_no"]} - {student["name"]}',
+        f"{student["roll_no"]} - {student["name"]}",
         value=True
     )
 
