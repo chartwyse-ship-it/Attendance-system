@@ -168,7 +168,7 @@ if st.button("Test n8n Connection"):
         else:
             st.error("❌ n8n returned an error")
             st.write(response.text)
-except Exception as e:
+    except Exception as e:
         st.error("❌ Connection failed")
         st.write(str(e))
              
