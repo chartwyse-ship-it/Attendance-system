@@ -4,8 +4,8 @@ import streamlit as st
 from datetime import date
 
 # ---------------- n8n URLs (production) ----------------
-GET_STUDENTS_URL = "https://somvanshi.app.n8n.cloud/webhook/get-students"
-SAVE_ATTENDANCE_URL = "https://somvanshi.app.n8n.cloud/webhook/save-attendance"
+GET_STUDENTS_URL = "https://somvanshi.app.n8n.cloud/webhook-test/get-students"
+SAVE_ATTENDANCE_URL = "https://somvanshi.app.n8n.cloud/webhook-test/save-attendance"
 
 st.set_page_config(
     page_title="Attendance System",
